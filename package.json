@@ -1,0 +1,23 @@
+{
+  "name": "normal-distribution-calculator",
+  "version": "1.0.0",
+  "description": "It is mini application to calculate your p-score based on a given data set",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "Node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zoraiz-Naeem/IS219.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zoraiz-Naeem/IS219/issues"
+  },
+  "homepage": "https://github.com/Zoraiz-Naeem/IS219#readme",
+  "devDependencies": {
+    "jest": "^25.1.0"
+  }
+}
