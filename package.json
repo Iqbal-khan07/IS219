@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Zoraiz-Naeem/IS219#readme",
   "devDependencies": {
+    "@types/jest": "^25.1.2",
     "jest": "^25.1.0"
   }
 }
