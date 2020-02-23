@@ -1,6 +1,8 @@
-const Arithetics = require("./utils/arithmetic")
+const Calculator = require("./utils/Calculator")
+
+const calc = new Calculator();
 try {
-    Arithetics.substract("2"-2);    
+    console.log(calc.add('2', 2))
 } catch (error) {
-    console.log(error)
+    console.error(error)
 }
