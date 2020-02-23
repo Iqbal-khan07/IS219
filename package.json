@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "Node index.js"
+    "start": "Node index.js",
+    "coveralls": "jest --coverage && cat ./tests/coverage/lcon"
   },
   "repository": {
     "type": "git",
