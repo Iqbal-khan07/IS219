@@ -1,4 +1,4 @@
-const Calcultor = require("../utils/Calculator")
+const Calcultor = require("../utils/Calculator/Calculator")
 
 test('Calculator addition 2 + 2 = 4 ', () => {
     const cal = new Calcultor();

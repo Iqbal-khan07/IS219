@@ -1,4 +1,4 @@
-const arithmetic = require("../utils/arithmeticOperators")
+const arithmetic = require("../utils/Calculator/arithmeticOperators")
 
 test('add 2 + 2 to equal 4', () => {
     expect(arithmetic.add(2, 2)).toBe(4)    

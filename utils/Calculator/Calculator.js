@@ -1,4 +1,4 @@
-const operations = require("../utils/arithmeticOperators")
+const operations = require("./arithmeticOperators")
 
 class Calculator{
     add(a=null, b=null){

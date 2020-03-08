@@ -1,4 +1,4 @@
-const utils = require('../utils/arithUtil')
+const utils = require('../arithUtil')
 
 const add = (augent, addent) => {
 
