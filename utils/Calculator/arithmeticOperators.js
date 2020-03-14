@@ -11,7 +11,7 @@ const add = (augent, addent) => {
 }
 
 const addArray = (arr) => {
-    
+    if(arr.length == 0) throw new Error("Empty Array")
     if(!utils.isArray(arr) || !utils.isNumArray(arr)) throw new Error("Input Must be a Integer array")
     let sum = 0;
     arr.forEach(num => {

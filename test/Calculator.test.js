@@ -23,6 +23,11 @@ test("Calculator addition '2' + 2 = 4 ", () => {
     expect(() => {cal.add(['1', 2, 3])}).toThrowError("Input Must be a Integer array");
 })
 
+test("Calculator addition [] throws an error", () =>{
+    const cal = new Calcultor();
+    expect(() => {cal.add([])}).toThrowError("Empty Array");
+})
+
 test('Calculator subtract 2 - 2 = 0 ', () => {
     const cal = new Calcultor();
     expect(cal.subtract(2, 2)).toBe(0);
