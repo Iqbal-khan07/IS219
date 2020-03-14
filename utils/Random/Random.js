@@ -38,18 +38,26 @@ class Random{
         return arr;
     }
 
-    static randomElementFromArray(array){
-        if(array.length === 0) return new Error("Empty Array");
-        const rand = new Random();
-        return array[rand.randomInt(0, array.length)]
+    static randomElementFromArray(array, seed=null, generator=null){
+        console.log(array.length)
+        if(array.length == 0) throw new Error("Empty Array");
+        if(!generator){
+            generator = new Random(seed)
+        }
+        let index = generator.randomInt(0, array.length-1)
+        return array[index]
     }
 
-    static nRandomElementsFromArray(N ,array, seed=null){        
-        const rand = new Random(seed);
+    static nRandomElementsFromArray(array, N, seed=null){        
         const arr = []
-        for(let i=0; i<N; i++){
-            arr.push(array[rand.randomInt(0, array.length)])
-        }
+        const generator = new Random(seed)
+        try {
+            for(let i=0; i<N; i++){
+                arr.push(Random.randomElementFromArray(array, seed, generator))
+            }
+        } catch (error) {
+            throw error
+        }      
         return arr
     }
 
