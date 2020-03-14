@@ -12,7 +12,8 @@ class StatisticsCalculator extends Calculator{
             throw error
         }
     }
-    static median(numbers) {
+    
+    median(numbers) {
         var median = 0, numsLen = numbers.length;
         numbers.sort();
      
@@ -25,10 +26,11 @@ class StatisticsCalculator extends Calculator{
             // middle number only
             median = numbers[(numsLen - 1) / 2];
         }
+        this.results = median;
      
-        return median;
+        return this.results;
     }
-    static mode(numbers) {
+    mode(numbers) {
         var modes = [], count = [], i, number, maxIndex = 0;
      
         for (i = 0; i < numbers.length; i += 1) {
@@ -45,8 +47,8 @@ class StatisticsCalculator extends Calculator{
                     modes.push(Number(i));
                 }
             }
-     
-        return modes;
+        this.results = modes;
+        return this.results;
         }
 }
 
