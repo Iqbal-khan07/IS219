@@ -50,6 +50,23 @@ class StatisticsCalculator extends Calculator{
         this.results = modes;
         return this.results;
         }
+    variance(array){
+        let m = this.mean(array)
+        let v = 0
+        var arrayV = []
+        let i = 0
+        for(i = 0;i<array.length;i++){
+            v = array[i] - m
+            v = v*v
+            arrayV[i] = v
+        }
+        return this.results = this.mean(arrayV)
+        
+    }
+    standardDeviation(array){
+        let v = this.variance(array)
+        return this.results = this.squareRoot(v)
+    }
 }
 
 module.exports = StatisticsCalculator
