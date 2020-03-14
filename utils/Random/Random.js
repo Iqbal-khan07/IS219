@@ -39,7 +39,6 @@ class Random{
     }
 
     static randomElementFromArray(array, seed=null, generator=null){
-        console.log(array.length)
         if(array.length == 0) throw new Error("Empty Array");
         if(!generator){
             generator = new Random(seed)
