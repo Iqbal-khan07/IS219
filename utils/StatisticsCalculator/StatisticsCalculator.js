@@ -4,14 +4,15 @@ class StatisticsCalculator extends Calculator{
     constructor(){
         super();
     }
-    mean(a){
+
+    mean(array){
         try {
-            a.add()/a.length
+            return this.results = this.add(array)/ array.length  
         }catch (error) {
             throw error
         }
     }
-    median(numbers) {
+    static median(numbers) {
         var median = 0, numsLen = numbers.length;
         numbers.sort();
      
@@ -27,7 +28,7 @@ class StatisticsCalculator extends Calculator{
      
         return median;
     }
-    mode(numbers) {
+    static mode(numbers) {
         var modes = [], count = [], i, number, maxIndex = 0;
      
         for (i = 0; i < numbers.length; i += 1) {
@@ -48,3 +49,5 @@ class StatisticsCalculator extends Calculator{
         return modes;
         }
 }
+
+module.exports = StatisticsCalculator
