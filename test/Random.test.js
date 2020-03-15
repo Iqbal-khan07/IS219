@@ -6,11 +6,6 @@ test("Create a Random Object", () => {
 })
 
 
-test("rand.random() without seed", () => {
-    let rand = new Random()
-    expect(rand.random()).toBe(0.38668969413265586)
-})
-
 test("rand.random() with seed 1", () => {
     let rand = new Random(1)
     expect(rand.random()).toBe(0.11042225826531649)
