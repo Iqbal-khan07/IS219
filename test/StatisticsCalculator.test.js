@@ -37,3 +37,8 @@ test('StatisticsCalculator skewness [2.5, 3.7, 6.6, 9.1, 9.5, 10.7, 11.9, 21.5, 
     expect(cal.standardDeviation([2.5, 3.7, 6.6, 9.1, 9.5, 10.7, 11.9, 21.5, 22.6, 25.2])).toBe(-4.555993073228235);
     expect(cal.results).toBe(-4.555993073228235);
 })
+test('StatisticsCalculator meanDeviation [10, 20, 30] ', () => {
+    const cal = new StatisticsCalculator();
+    expect(cal.meanDeviation([10, 20, 30])).toBe(6.666666666666667);
+    expect(cal.results).toBe(6.666666666666667);
+})
