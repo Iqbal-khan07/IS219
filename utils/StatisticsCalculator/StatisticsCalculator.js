@@ -1,5 +1,6 @@
 const Calculator = require("../Calculator/Calculator");
 const utils = require("../arithUtil")
+const Random = require("../Random/Random")
 
 class StatisticsCalculator extends Calculator{
     constructor(){
@@ -7,18 +8,13 @@ class StatisticsCalculator extends Calculator{
     }
 
     mean(array){
-        try {
-            return this.results = this.add(array)/ array.length  
-        }catch (error) {
-            throw error
-        }
+        utils.NumericArrayTests(array)
+        return this.results = this.add(array)/ array.length  
     }
     
     median(numbers) {
+        utils.NumericArrayTests(numbers)
         var median = 0, numsLen = numbers.length;
-
-        if(numbers.length === 0) throw new Error("Empty Array")
-        if(!utils.isNumArray(numbers)) throw new Error("Need a numeric array")
 
         numbers.sort();
      
@@ -36,10 +32,8 @@ class StatisticsCalculator extends Calculator{
         return this.results;
     }
     mode(numbers) {
-
-        if(numbers.length === 0) throw new Error("Empty Array")
-        if(!utils.isNumArray(numbers)) throw new Error("Input Must be a Integer array")
-
+        utils.NumericArrayTests(numbers)
+    
         var modes = [], count = [], i, number, maxIndex = 0;
      
         for (i = 0; i < numbers.length; i += 1) {
@@ -63,6 +57,8 @@ class StatisticsCalculator extends Calculator{
     }
 
     variance(array){
+        utils.NumericArrayTests(array)
+        
         let m = this.mean(array)
         let v = 0
         var arrayV = []
@@ -77,13 +73,13 @@ class StatisticsCalculator extends Calculator{
     }
 
     standardDeviation(array){
+        utils.NumericArrayTests(array)
         let v = this.variance(array)
         return this.results = this.squareRoot(v)
     }
 
     quartiles(arr, q) {
-        if(arr.length === 0) throw new Error("Empty Array")
-        if(!utils.isNumArray(arr)) throw new Error("Input Must be a Integer array")
+        utils.NumericArrayTests(arr)
 
         const asc = arr => arr.sort((a, b) => a - b);
         const sorted = asc(arr);
@@ -98,10 +94,12 @@ class StatisticsCalculator extends Calculator{
     }
 
     skewness(array){  
+        utils.NumericArrayTests(array)
         return this.results = (3*(this.mean(array)-this.median(array))/(this.standardDeviation(array)))                 
     }
 
     meanDeviation(array){
+        utils.NumericArrayTests(array)
         var i;
         let sum = 0
         let m = this.mean(array)
@@ -112,12 +110,15 @@ class StatisticsCalculator extends Calculator{
     } 
 
     zScore(array, x){
+        utils.NumericArrayTests(array)
         let mean = this.mean(array)
         let sd = this.standardDeviation(array)                
         return this.results = (x - mean) / sd
     }
 
     sampleCorrealtion(arrayX, arrayY){
+        utils.NumericArrayTests(arrayX)
+        utils.NumericArrayTests(arrayY)
         if(arrayX.length !== arrayY.length) throw new Error("Both the arrays have to be of same size")
         const meanX = this.mean(arrayX)
         const meanY = this.mean(arrayY)
@@ -134,6 +135,76 @@ class StatisticsCalculator extends Calculator{
         }
         return this.results = r / n
     }
+
+    randomSample(data, size){
+        utils.NumericArrayTests(data)
+        return this.results = Random.nRandomElementsFromArray(data, size)
+    }
+
+    systematicSample(data, size){
+        utils.NumericArrayTests(data)
+        const rand = new Random(1)
+        const sample = []
+
+        const samplingInterval = Math.floor(data.length / size)
+        console.log('interval', samplingInterval) 
+        let start = rand.randomInt(0, data.length)
+        while(true){
+            console.log(start)
+            if((data.length - 1 - start)/(data.length - size - 1) >= 0){
+                break
+            }
+            start = rand.randomInt(0, data.length)
+        }
+        for(let i = start, j=0; j<size; ++j,i+=samplingInterval){
+            sample.push(data[i])
+        }
+        return this.results = sample
+    }
+
+    Ztable(x){
+        const Ztable = {
+            0.8: 1.282,
+            0.85: 1.440,
+            0.90: 1.645,
+            0.95: 1.960,
+            0.99: 2.576,
+            0.995: 2.807,
+            0.999: 3.291
+        }
+        return Ztable[x]
+    }
+
+    marginError(sample, confidenceLevel=0.95){
+    
+        const sampleStd = this.standardDeviation(sample)
+        const n = sample.size
+        const Z = this.Ztable[confidenceLevel]
+    
+
+        if(!Z){
+            throw new Error("Choose between confidence level of 0.8, 0.85, 0.90, 0.99, 0.995, 0.999")
+        }
+
+        const margin = Z * (sampleStd/this.squareRoot(n))
+        return this.results = margin
+    }
+
+    confidencInterval(sample, confidenceLevel=0.95){
+        const marginOfError = this.marginError(sample, confidenceLevel)
+        const sampleMean = this.mean(sample)
+        return {
+            upper: sampleMean + marginOfError,
+            lower: sampleMean - marginOfError 
+        }
+    }
+
+    CochranSampleSize(proportion, marginOfError, confidenceLevel){
+        const Z = this.Ztable(confidenceLevel)
+        return (this.square(Z) * proportion * (1 -proportion))/this.square(marginOfError)
+    } 
+
 }
+
 
 module.exports = StatisticsCalculator
