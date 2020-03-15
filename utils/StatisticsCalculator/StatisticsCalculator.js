@@ -88,13 +88,21 @@ class StatisticsCalculator extends Calculator{
         let sum = 0
         let m = this.mean(array)
         for(i = 0;i<array.length;i++){
-            sum += Math.abs(array[i]- m);
-            console.log(sum)
-        }
-        console.log(m)
-        
+            sum += Math.abs(array[i]- m);     
+        }   
         return this.results = (sum/array.length)
     } 
+    zScore(array){
+        var i;
+        let sum = 0
+        var arrayV = []
+        let m = this.mean(array)
+        for(i = 0;i<array.length;i++){
+            sum = array[i]- m;
+            arrayV[i] = sum/this.standardDeviation(array)     
+        }
+        return this.results = arrayV
+    }
 }
 
 module.exports = StatisticsCalculator
