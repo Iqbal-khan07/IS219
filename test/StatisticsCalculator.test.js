@@ -109,8 +109,7 @@ test("StatisticsCalculator meanDeviation [] throws an error", () =>{
 })
 test('StatisticsCalculator zScore [12, 440, 7900] ', () => {
     const cal = new StatisticsCalculator();
-    expect(cal.zScore([12, 440, 7900])).toStrictEqual([-0.7653704393079397, -0.6471963599342752, 1.4125667992422148]);
-    expect(cal.results).toStrictEqual([-0.7653704393079397, -0.6471963599342752, 1.4125667992422148]);
+    expect(cal.zScore([1,2,3,4], 2)).toBe(-0.4472135954999579);
 })
 test('StatisticsCalculator zScore [1, "2", 4, 4, 6] ', () => {
     const cal = new StatisticsCalculator();
