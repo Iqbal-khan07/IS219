@@ -1,4 +1,5 @@
 const Calculator = require("../Calculator/Calculator");
+const utils = require("../arithUtil")
 
 class StatisticsCalculator extends Calculator{
     constructor(){
@@ -15,6 +16,10 @@ class StatisticsCalculator extends Calculator{
     
     median(numbers) {
         var median = 0, numsLen = numbers.length;
+
+        if(numbers.length === 0) throw new Error("Empty Array")
+        if(!utils.isNumArray(numbers)) throw new Error("Need a numeric array")
+
         numbers.sort();
      
         if (
@@ -31,6 +36,10 @@ class StatisticsCalculator extends Calculator{
         return this.results;
     }
     mode(numbers) {
+
+        if(numbers.length === 0) throw new Error("Empty Array")
+        if(!utils.isNumArray(numbers)) throw new Error("Input Must be a Integer array")
+
         var modes = [], count = [], i, number, maxIndex = 0;
      
         for (i = 0; i < numbers.length; i += 1) {
@@ -73,6 +82,9 @@ class StatisticsCalculator extends Calculator{
     }
 
     quartiles(arr, q) {
+        if(arr.length === 0) throw new Error("Empty Array")
+        if(!utils.isNumArray(arr)) throw new Error("Input Must be a Integer array")
+
         const asc = arr => arr.sort((a, b) => a - b);
         const sorted = asc(arr);
         const pos = (sorted.length - 1) * q;
@@ -103,6 +115,24 @@ class StatisticsCalculator extends Calculator{
         let mean = this.mean(array)
         let sd = this.standardDeviation(array)                
         return this.results = (x - mean) / sd
+    }
+
+    sampleCorrealtion(arrayX, arrayY){
+        if(arrayX.length !== arrayY.length) throw new Error("Both the arrays have to be of same size")
+        const meanX = this.mean(arrayX)
+        const meanY = this.mean(arrayY)
+        const sdX = this.standardDeviation(arrayX)
+        const sdY = this.standardDeviation(arrayY)
+        const n = arrayX.length
+
+        let r = 0
+        for(let i=0; i < n; i++){
+            let scoreX = (arrayX[i] - meanX) / sdX
+            let scoreY = (arrayY[i] - meanY) / sdY
+
+            r += (scoreX * scoreY)
+        }
+        return this.results = r / n
     }
 }
 
