@@ -67,6 +67,18 @@ class StatisticsCalculator extends Calculator{
         let v = this.variance(array)
         return this.results = this.squareRoot(v)
     }
+    quantile(arr, q) {
+        const asc = arr => arr.sort((a, b) => a - b);
+        const sorted = asc(arr);
+        const pos = (sorted.length - 1) * q;
+        const base = Math.floor(pos);
+        const rest = pos - base;
+            if (sorted[base + 1] !== undefined) {
+              return this.results =  sorted[base] + rest * (sorted[base + 1] - sorted[base]);
+        } else {
+            return this.results = sorted[base];
+    }
+}
 }
 
 module.exports = StatisticsCalculator
