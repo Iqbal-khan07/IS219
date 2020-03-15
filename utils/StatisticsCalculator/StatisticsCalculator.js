@@ -80,10 +80,21 @@ class StatisticsCalculator extends Calculator{
         }
     }
     skewness(array){  
-    return this.results = (3*(this.mean(array)-this.median(array))/(this.standardDeviation(array)))   
+        return this.results = (3*(this.mean(array)-this.median(array))/(this.standardDeviation(array)))   
                   
     }
-      
+    meanDeviation(array){
+        var i;
+        let sum = 0
+        let m = this.mean(array)
+        for(i = 0;i<array.length;i++){
+            sum += Math.abs(array[i]- m);
+            console.log(sum)
+        }
+        console.log(m)
+        
+        return this.results = (sum/array.length)
+    } 
 }
 
 module.exports = StatisticsCalculator
