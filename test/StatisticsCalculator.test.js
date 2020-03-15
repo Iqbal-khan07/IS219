@@ -27,3 +27,8 @@ test('StatisticsCalculator standardDeviation [1, 2, 4, 4, 6] ', () => {
     expect(cal.standardDeviation([1, 2, 4, 4, 6])).toBe(1.7435595774162693);
     expect(cal.results).toBe(1.7435595774162693);
 })
+test('StatisticsCalculator quartiles [3, -1, 5, 7], 0.5) ', () => {
+    const cal = new StatisticsCalculator();
+    expect(cal.standardDeviation([3, -1, 5, 7], 0.5)).toBe(4);
+    expect(cal.results).toBe(4);
+})
