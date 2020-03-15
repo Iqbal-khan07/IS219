@@ -1,7 +1,8 @@
 class Random{
     // sets the seed for the random generator
     constructor(seed=null){
-        this.seed = (seed) ? this.xmur3(seed.toString()): this.xmur3("apple");
+        let def = Math.random()
+        this.seed = (seed) ? this.xmur3(seed.toString()): this.xmur3(def.toString());
     }
 
     // generates a random decimal.
