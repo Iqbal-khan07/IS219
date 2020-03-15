@@ -77,8 +77,13 @@ class StatisticsCalculator extends Calculator{
               return this.results =  sorted[base] + rest * (sorted[base + 1] - sorted[base]);
         } else {
             return this.results = sorted[base];
+        }
     }
-}
+    skewness(array){  
+    return this.results = (3*(this.mean(array)-this.median(array))/(this.standardDeviation(array)))   
+                  
+    }
+      
 }
 
 module.exports = StatisticsCalculator
