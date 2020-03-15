@@ -67,7 +67,7 @@ class StatisticsCalculator extends Calculator{
         let v = this.variance(array)
         return this.results = this.squareRoot(v)
     }
-    quantile(arr, q) {
+    quartiles(arr, q) {
         const asc = arr => arr.sort((a, b) => a - b);
         const sorted = asc(arr);
         const pos = (sorted.length - 1) * q;
