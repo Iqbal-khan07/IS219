@@ -102,6 +102,8 @@ class StatisticsCalculator extends Calculator{
             arrayV[i] = sum/this.standardDeviation(array)     
         }
         return this.results = arrayV
+
+        
     }
 }
 
