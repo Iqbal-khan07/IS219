@@ -47,7 +47,7 @@ class StatisticsCalculator extends Calculator{
                     modes.push(Number(i));
                 }
             }
-        this.results = modes;
+        this.results = parseInt(modes);
         return this.results;
         }
     variance(array){
