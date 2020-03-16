@@ -150,17 +150,119 @@ test("StatisticsCalculator zScore [] throws an error", () =>{
 
 /////////////// sample correlation tests ////////////////
 
-// test('StatisticsCalculator zScore [12, 440, 7900] ', () => {
+test('StatisticsCalculator sampleCorrealtion [1, 2, 3, 4, 5, 6, 7, 8], [4, 1, 5, 8, 4, 2, 6, 8] ', () => {
+    const cal = new StatisticsCalculator();
+    expect(cal.sampleCorrealtion([1, 2, 3, 4, 5, 6, 7, 8], [4, 1, 5, 8, 4, 2, 6, 8])).toBe(0.4575090108716775);
+})
+
+test('StatisticsCalculator sampleCorrealtion [1, 2, 3, 4, 5, 6, 7, 8], [4, 1, 5, 8, 4, 2, 6, 8] ', () => {
+    const cal = new StatisticsCalculator();
+    expect(() => {cal.sampleCorrealtion([1, "2", 3, 4, 5, 6, 7, 8], [4, "1", 5, 8, 4, 2, 6, 8])}).toThrowError("Input Must be a Integer array");
+})
+
+test("StatisticsCalculator sampleCorrealtion [] throws an error", () =>{
+    const cal = new StatisticsCalculator();
+    expect(() => {cal.sampleCorrealtion([])}).toThrowError("Empty Array");
+})
+
+/////////////// random sample tests ////////////////
+
+// test('StatisticsCalculator randomSample [1,2,3,4,5,6,7,8,9],5 ', () => {
 //     const cal = new StatisticsCalculator();
-//     expect(cal.sampleCorrealtion([1, 2, 3, 4, 5, 6, 7, 8], [4, 1, 5, 8, 4, 2, 6, 8])).toBe(0.4575090108716775);
+//     expect(cal.randomSample ([1,2,3,4,5,6,7,8,9],5)).toBe([ 7, 1, 3, 2, 2 ]);
 // })
 
-// test('StatisticsCalculator zScore [1, "2", 4, 4, 6] ', () => {
+// test('StatisticsCalculator randomSample [1,"2",3,4,5,6,7,8,9],5 ', () => {
 //     const cal = new StatisticsCalculator();
-//     expect(() => {cal.sampleCorrealtion([1, "2", 4, 4, 6], [1, "2", 4, 4, 6])}).toThrowError("Input Must be a Integer array");
+//     expect(() => {cal.randomSample ([1,"2",3,4,5,6,7,8,9],5)}).toThrowError("Input Must be a Integer array");
 // })
 
-// test("StatisticsCalculator zScore [] throws an error", () =>{
+// test("StatisticsCalculator randomSample [] throws an error", () =>{
 //     const cal = new StatisticsCalculator();
-//     expect(() => {cal.zScore([])}).toThrowError("Empty Array");
+//     expect(() => {cal.randomSample([])}).toThrowError("Empty Array");
 // })
+
+/////////////// Systematic sample tests ////////////////
+
+test('StatisticsCalculator systematicSample [1,2,3,4,5,6,7,8,9],5 ', () => {
+    const cal = new StatisticsCalculator();
+    expect(cal.systematicSample ([1,2,3,4,5,6,7,8,9],5)).toStrictEqual([ 2, 3, 4, 5, 6 ]);
+})
+
+test('StatisticsCalculator systematicSample [1,"2",3,4,5,6,7,8,9],5 ', () => {
+    const cal = new StatisticsCalculator();
+    expect(() => {cal.systematicSample ([1,"2",3,4,5,6,7,8,9],5)}).toThrowError("Input Must be a Integer array");
+})
+
+test("StatisticsCalculator systematicSample [] throws an error", () =>{
+    const cal = new StatisticsCalculator();
+    expect(() => {cal.systematicSample([])}).toThrowError("Empty Array");
+})
+
+/////////////// Ztable tests ////////////////
+
+test('StatisticsCalculator Ztable .90 ', () => {
+    const cal = new StatisticsCalculator();
+    expect(cal.Ztable (.90)).toStrictEqual(1.645);
+})
+
+test('StatisticsCalculator Ztable ".90" ', () => {
+    const cal = new StatisticsCalculator();
+    expect(() => {cal.Ztable ("0.90")}).toThrowError("Input Must be a Integer");
+})
+
+test("StatisticsCalculator Ztable [] throws an error", () =>{
+    const cal = new StatisticsCalculator();
+    expect(() => {cal.Ztable()}).toThrowError("Input Must be a Integer");
+})
+
+/////////////// Marginal Error tests ////////////////
+
+test('StatisticsCalculator marginError [1, 2, 3, 5, 3, 4, 3, 4],0.90 ', () => {
+    const cal = new StatisticsCalculator();
+    expect(cal.marginError ([1, 2, 3, 5, 3, 4, 3, 4],0.90)).toBe(0.6780950094174673);
+})
+
+test('StatisticsCalculator marginError [1, "2", 3, 5, 3, 4, 3, 4],0.90 ', () => {
+    const cal = new StatisticsCalculator();
+    expect(() => {cal.marginError ([1, "2", 3, 5, 3, 4, 3, 4],0.90)}).toThrowError("Input Must be a Integer");
+})
+
+test("StatisticsCalculator marginError [] throws an error", () =>{
+    const cal = new StatisticsCalculator();
+    expect(() => {cal.marginError([])}).toThrowError("Empty Array");
+})
+
+/////////////// Confidenc Interval tests ////////////////
+
+test('StatisticsCalculator confidencInterval [1, 2, 3, 5, 3, 4, 3, 4],0.90 ', () => {
+    const cal = new StatisticsCalculator();
+    expect(cal.confidencInterval ([1, 2, 3, 5, 3, 4, 3, 4],0.90)).toStrictEqual({"lower": 2.446904990582533, "upper": 3.803095009417467});
+})
+
+test('StatisticsCalculator confidencInterval [1, "2", 3, 5, 3, 4, 3, 4],0.90 ', () => {
+    const cal = new StatisticsCalculator();
+    expect(() => {cal.confidencInterval ([1, "2", 3, 5, 3, 4, 3, 4],0.90)}).toThrowError("Input Must be a Integer");
+})
+
+test("StatisticsCalculator confidencInterval [] throws an error", () =>{
+    const cal = new StatisticsCalculator();
+    expect(() => {cal.confidencInterval([])}).toThrowError("Empty Array");
+})
+
+///////////////  Cochran Sample Size tests ////////////////
+
+test('StatisticsCalculator CochranSampleSize 0.5,0.05,0.95 ', () => {
+    const cal = new StatisticsCalculator();
+    expect(cal.CochranSampleSize(0.5,0.05,0.95)).toStrictEqual(384.1599999999999);
+})
+
+test('StatisticsCalculator CochranSampleSize 0.5,"0.05",0.95  ', () => {
+    const cal = new StatisticsCalculator();
+    expect(() => {cal.CochranSampleSize(0.5,"0.05",0.95)}).toThrowError("Inputs must be numbers");
+})
+
+test("StatisticsCalculator confidencInterval [] throws an error", () =>{
+    const cal = new StatisticsCalculator();
+    expect(() => {cal.confidencInterval([])}).toThrowError("Empty Array");
+})
