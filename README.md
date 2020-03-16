@@ -12,7 +12,7 @@ Contributers:
     Coded the Population Sampling part Class
     Write tests for Population Sampling Methods For the Statiscak Calculator Class
     
-  Taswer Rakheen
+  Taswer Mahmood
     
     Coded the Descriptive Statistical methods for the statistical Calculator Class 
     Write tests for Descriptive Statistical methods For the statistical Calculator Class
