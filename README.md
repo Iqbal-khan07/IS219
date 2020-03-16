@@ -5,6 +5,7 @@ This project is  a statistical calculator. For a given data set, it will produce
 
 Contributers:
   Zoraiz Naeem
+  
     Coded the Random Class
     Write tests for Random Class
     
@@ -12,14 +13,12 @@ Contributers:
     Write tests for Population Sampling Methods For the Statiscak Calculator Class
     
   Taswer Rakheen
-    Coded the Random Class
-    Write tests for Random Class
     
     Coded the Descriptive Statistical methods for the statistical Calculator Class 
     Write tests for Descriptive Statistical methods For the statistical Calculator Class
    
-   Wrote the project plan
-
+    Wrote the project plan.
+    
 PROJECT PLAN--
 
 1. Calculator Object
