@@ -163,6 +163,7 @@ class StatisticsCalculator extends Calculator{
     }
 
     Ztable(x){
+        utils.NumericTests(x)
         const Ztable = {
             0.8: 1.282,
             0.85: 1.440,
@@ -178,15 +179,15 @@ class StatisticsCalculator extends Calculator{
     marginError(sample, confidenceLevel=0.95){
     
         const sampleStd = this.standardDeviation(sample)
-        const n = sample.size
-        const Z = this.Ztable[confidenceLevel]
+        const n = sample.length
+        let z = this.Ztable(confidenceLevel)
+        
     
-
-        if(!Z){
+        if(z>3.291||z<1.282 ){
             throw new Error("Choose between confidence level of 0.8, 0.85, 0.90, 0.99, 0.995, 0.999")
         }
 
-        const margin = Z * (sampleStd/this.squareRoot(n))
+        const margin = z * (sampleStd/this.squareRoot(n))
         return this.results = margin
     }
 
