@@ -201,4 +201,11 @@ PROJECT PLAN--
      16. CochranSampleSize
       1.find the Z value using the ztable for the given confidence level
       2 returns square(Z) * proportion * (1 - proportion) / square(marginOfError)
+     17. Sample Size
+      1. Calculate the zscore for the given confidence interval
+      2. check to see zscore is in the allowed values
+      3. if standard-deviation is null:
+          - sample size = (p* [1 - p]) * square(Z/E)
+         else:
+          - samplesize = suare(Z * standard deviation / E)
     
