@@ -173,6 +173,7 @@ class StatisticsCalculator extends Calculator{
             0.995: 2.807,
             0.999: 3.291
         }
+    
         return Ztable[x]
     }
 
@@ -182,8 +183,7 @@ class StatisticsCalculator extends Calculator{
         const n = sample.length
         let z = this.Ztable(confidenceLevel)
         
-    
-        if(z>3.291||z<1.282 ){
+        if(z == undefined){
             throw new Error("Choose between confidence level of 0.8, 0.85, 0.90, 0.99, 0.995, 0.999")
         }
 
@@ -204,6 +204,24 @@ class StatisticsCalculator extends Calculator{
         const Z = this.Ztable(confidenceLevel)
         return (this.square(Z) * proportion * (1 -proportion))/this.square(marginOfError)
     } 
+
+    sampleSize(confidenceInterval, width, proportion=0.5, standardDeviation=null){
+        const Z = this.Ztable(confidenceInterval)
+        if(Z == undefined){
+            throw new Error("Choose between confidence interval of 0.8, 0.85, 0.90, 0.99, 0.995, 0.999")
+        }
+    
+        const E = width/2
+        const p = proportion
+        const q = 1 - p
+        let sampleSize = 0
+        if(!standardDeviation){
+            sampleSize = (p * q) * (this.square(Z/E))
+        }else{
+            sampleSize = this.square((Z * standardDeviation) / E)
+        }
+        return this.results = Math.ceil(sampleSize)
+    }
 
 }
 

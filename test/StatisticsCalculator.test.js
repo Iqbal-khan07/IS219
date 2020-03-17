@@ -245,9 +245,9 @@ test('StatisticsCalculator confidencInterval [1, "2", 3, 5, 3, 4, 3, 4],0.90 ', 
     expect(() => {cal.confidencInterval ([1, "2", 3, 5, 3, 4, 3, 4],0.90)}).toThrowError("Input Must be a Integer");
 })
 
-test("StatisticsCalculator confidencInterval [] throws an error", () =>{
+test("StatisticsCalculator confidencInterval [1, 2, 3, 5, 3, 4, 3, 4], 0.60 throws an error", () =>{
     const cal = new StatisticsCalculator();
-    expect(() => {cal.confidencInterval([])}).toThrowError("Empty Array");
+    expect(() => {cal.confidencInterval([1, 2, 3, 5, 3, 4, 3, 4], 0.6)}).toThrowError("Choose between confidence level of 0.8, 0.85, 0.90, 0.99, 0.995, 0.999");
 })
 
 ///////////////  Cochran Sample Size tests ////////////////
@@ -265,4 +265,21 @@ test('StatisticsCalculator CochranSampleSize 0.5,"0.05",0.95  ', () => {
 test("StatisticsCalculator confidencInterval [] throws an error", () =>{
     const cal = new StatisticsCalculator();
     expect(() => {cal.confidencInterval([])}).toThrowError("Empty Array");
+})
+
+///////////////  Sample Size tests ////////////////
+
+test('StatisticsCalculator sampleSize(0.95,0.6,0.41) without standard deviation ', () => {
+    const cal = new StatisticsCalculator();
+    expect(cal.sampleSize(0.95,0.06,0.41)).toStrictEqual(1033);
+})
+
+test('StatisticsCalculator sampleSize(0.99,1,0.41, 2.9) with standard deviation ', () => {
+    const cal = new StatisticsCalculator();
+    expect(cal.sampleSize(0.99,1,null,2.9)).toStrictEqual(224);
+})
+
+test('StatisticsCalculator sampleSize(0.2,0.06,0.41, 2.9) with standard deviation ', () => {
+    const cal = new StatisticsCalculator();
+    expect(() => {cal.sampleSize(0.1,0.06,null,2.9)}).toThrowError("Choose between confidence interval of 0.8, 0.85, 0.90, 0.99, 0.995, 0.999");
 })
